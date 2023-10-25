@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   experimental: {
-    serverActions: true,
+    serverActions: true
   },
   images: {
     remotePatterns: [
@@ -10,8 +10,20 @@ module.exports = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
         port: '',
-        pathname: '**',
-      },
-    ],
-  },
-};
+        pathname: '**'
+      }
+    ]
+  }
+  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  //   config.resolve.alias.https = 'https-browserify'
+  //   config.resolve.alias.http = 'http-browserify'
+  //   config.resolve.fallback = {
+  //     querystring: require.resolve('querystring-es3'),
+  //     fs: false,
+  //     os: false,
+  //     stream: false
+  //   }
+
+  //   return config
+  // }
+}

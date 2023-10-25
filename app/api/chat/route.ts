@@ -5,63 +5,60 @@ import { Configuration, OpenAIApi } from 'openai-edge'
 import { auth } from '@/auth'
 import { nanoid } from '@/lib/utils'
 
-export const runtime = 'edge'
+// export const runtime = 'edge'
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-})
+import { NextRequest, NextResponse } from 'next/server'
+import { Message as VercelChatMessage } from 'ai'
 
-const openai = new OpenAIApi(configuration)
+import { ChatOpenAI } from 'langchain/chat_models/openai'
+import { BytesOutputParser } from 'langchain/schema/output_parser'
+import { PromptTemplate } from 'langchain/prompts'
+import { ChatGooglePaLM } from 'langchain/chat_models/googlepalm'
+
+// export const runtime = "edge";
+
+const formatMessage = (message: VercelChatMessage) => {
+  return `${message.role}: ${message.content}`
+}
+
+const TEMPLATE = `You are a pirate named Patchy. All responses must be extremely verbose and in pirate dialect.
+
+Current conversation:
+{chat_history}
+
+User: {input}
+AI:`
 
 export async function POST(req: Request) {
-  const json = await req.json()
-  const { messages, previewToken } = json
-  const userId = (await auth())?.user.id
+  try {
+    const json = await req.json()
+    const { messages, previewToken } = json
 
-  if (!userId) {
-    return new Response('Unauthorized', {
-      status: 401
+    // const userId = (await auth())?.user.id
+
+    // if (!userId) {
+    //   return new Response('Unauthorized', {
+    //     status: 401
+    //   })
+    // }
+
+    const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage)
+    const currentMessageContent = messages[messages.length - 1].content
+    const prompt = PromptTemplate.fromTemplate(TEMPLATE)
+    const model = new ChatGooglePaLM({
+      temperature: 0.8,
+      apiKey: 'AIzaSyD4EmQ7bLRk043CtEYsaHU6J0ssgW-WpYU'
     })
+    const outputParser = new BytesOutputParser()
+    const chain = prompt.pipe(model).pipe(outputParser)
+
+    const stream = await chain.stream({
+      chat_history: formattedPreviousMessages.join('\n'),
+      input: currentMessageContent
+    })
+
+    return new StreamingTextResponse(stream)
+  } catch (error: any) {
+    return NextResponse.json({ error: error?.message }, { status: 500 })
   }
-
-  if (previewToken) {
-    configuration.apiKey = previewToken
-  }
-
-  const res = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
-    messages,
-    temperature: 0.7,
-    stream: true
-  })
-
-  const stream = OpenAIStream(res, {
-    async onCompletion(completion) {
-      const title = json.messages[0].content.substring(0, 100)
-      const id = json.id ?? nanoid()
-      const createdAt = Date.now()
-      const path = `/chat/${id}`
-      const payload = {
-        id,
-        title,
-        userId,
-        createdAt,
-        path,
-        messages: [
-          ...messages,
-          {
-            content: completion,
-            role: 'assistant'
-          }
-        ]
-      }
-      await kv.hmset(`chat:${id}`, payload)
-      await kv.zadd(`user:chat:${userId}`, {
-        score: createdAt,
-        member: `chat:${id}`
-      })
-    }
-  })
-
-  return new StreamingTextResponse(stream)
 }
