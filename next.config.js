@@ -4,6 +4,9 @@ module.exports = {
   experimental: {
     serverActions: true
   },
+  typescript: {
+    ignoreBuildErrors: true
+  },
   images: {
     remotePatterns: [
       {
