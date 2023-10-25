@@ -1,21 +1,20 @@
 import { UseChatHelpers } from 'ai/react'
 
 import { Button } from '@/components/ui/button'
-import { ExternalLink } from '@/components/external-link'
 import { IconArrowRight } from '@/components/ui/icons'
 
 const exampleMessages = [
   {
-    heading: 'Explain technical concepts',
-    message: `What is a "serverless function"?`
+    heading: 'Biến động thị trường chứng khoáng Việt Nam hôm qua',
+    message: `Các biến động của thị trường chứng khoáng Việt Nam hôm qua tác động như thế nào?`
   },
   {
-    heading: 'Summarize an article',
-    message: 'Summarize the following article for a 2nd grader: \n'
+    heading: 'Tóm tắt sự kiện chứng khoán',
+    message: 'Tóm tắt các sự kiện, tin túc liên quan đến chứng khoán'
   },
   {
-    heading: 'Draft an email',
-    message: `Draft an email to my boss about the following: \n`
+    heading: 'Các cổ phiếu tăng giá mạnh nhất',
+    message: `Danh sách các cổ phiếu tăng giá mạnh nhất hôm nay`
   }
 ]
 
@@ -24,18 +23,13 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
         <h1 className="mb-2 text-lg font-semibold">
-          Welcome to Next.js AI Chatbot!
+          Chào mừng bạn đến với trợ lý ảo hỗ trợ chứng khoán của Xlancer
         </h1>
-        <p className="mb-2 leading-normal text-muted-foreground">
-          This is an open source AI chatbot app template built with{' '}
-          <ExternalLink href="https://nextjs.org">Next.js</ExternalLink> and{' '}
-          <ExternalLink href="https://vercel.com/storage/kv">
-            Vercel KV
-          </ExternalLink>
-          .
-        </p>
+
         <p className="leading-normal text-muted-foreground">
-          You can start a conversation here or try the following examples:
+          Hãy để tôi giúp bạn tìm kiếm thông tin về chứng khoán một cách nhanh
+          chóng và hiệu quả nhất. Bạn có thể thử một số câu hỏi mẫu dưới đây
+          hoặc tự đặt câu hỏi cho tôi.
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
           {exampleMessages.map((message, index) => (

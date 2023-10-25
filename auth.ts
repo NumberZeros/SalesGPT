@@ -1,5 +1,5 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
-import GitHub from 'next-auth/providers/github'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 declare module 'next-auth' {
   interface Session {
@@ -15,7 +15,34 @@ export const {
   auth,
   CSRF_experimental // will be removed in future
 } = NextAuth({
-  providers: [GitHub],
+  providers: [
+    // GitHub,
+    CredentialsProvider({
+      // The name to display on the sign in form (e.g. 'Sign in with...')
+      name: 'Credentials',
+      // The credentials is used to generate a suitable form on the sign in page.
+      // You can specify whatever fields you are expecting to be submitted.
+      // e.g. domain, email, password, 2FA token, etc.
+      credentials: {
+        email: { label: 'email', type: 'text', placeholder: 'jsmith' },
+        password: { label: 'Password', type: 'password' }
+      },
+      async authorize(credentials: any, req: any) {
+        if (
+          credentials.email === 'admin@gmail.com' &&
+          credentials.password === 'admin'
+        ) {
+          return {
+            id: new Date().getTime(),
+            name: 'admin',
+            email: credentials.email,
+            name: 'Admin'
+          }
+        }
+        return null
+      }
+    })
+  ],
   callbacks: {
     jwt({ token, profile }) {
       if (profile) {
