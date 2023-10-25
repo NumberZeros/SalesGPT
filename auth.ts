@@ -27,7 +27,7 @@ export const {
         email: { label: 'email', type: 'text', placeholder: 'jsmith' },
         password: { label: 'Password', type: 'password' }
       },
-      async authorize(credentials: any, req: any) {
+      async authorize(credentials: any, req: any): Promise<any> {
         if (
           credentials.email === 'admin@gmail.com' &&
           credentials.password === 'admin'
@@ -35,8 +35,7 @@ export const {
           return {
             id: new Date().getTime(),
             name: 'admin',
-            email: credentials.email,
-            name: 'Admin'
+            email: credentials.email
           }
         }
         return null
