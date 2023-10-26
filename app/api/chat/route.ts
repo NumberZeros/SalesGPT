@@ -8,6 +8,7 @@ import { nanoid } from '@/lib/utils'
 
 import { NextRequest, NextResponse } from 'next/server'
 import { SimpleQAChat } from '@/server/services/agents/simple-qa-chat'
+const simpleQAChat = new SimpleQAChat()
 
 // export const runtime = "edge";
 
@@ -16,7 +17,6 @@ export async function POST(req: Request) {
     const json = await req.json()
     const { messages, previewToken } = json
 
-    const simpleQAChat = new SimpleQAChat()
     const stream = await simpleQAChat.execute(messages)
     return new StreamingTextResponse(stream)
   } catch (error: any) {
