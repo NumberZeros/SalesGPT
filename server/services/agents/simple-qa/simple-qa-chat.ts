@@ -1,6 +1,6 @@
 import { EModel } from '@/server/interfaces/models'
-import { ModelFactory } from '../models/factory.model'
-import PalmChat from '../models/palm.chat'
+import { ModelFactory } from '../../models/factory.model'
+import PalmChat from '../../models/palm.chat'
 import { PromptTemplate } from 'langchain/prompts'
 import { TEMPLATE } from './prompt'
 import { BytesOutputParser } from 'langchain/schema/output_parser'
