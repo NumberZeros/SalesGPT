@@ -17,7 +17,7 @@ export const CONFIGURATION = {
         apiKey: process.env.AI21_API_KEY || ''
       },
       GOOGLE_PALM_CONFIG: {
-        apiKey: process.env.GOOGLE_PALM_API_KEY || ''
+        apiKey: process.env.PALM_API_KEY || ''
       }
     },
     THIRD_PARTY_CONFIG: {

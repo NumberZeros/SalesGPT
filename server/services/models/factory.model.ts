@@ -1,17 +1,20 @@
-import AI21LLM from './ai21.llm.js'
-import CohereLLM from './cohere.llm.js'
-import OllamaLLM from './ollama.llm.js'
-import PalmLLM from './palm.llm.js'
-import { AI21Input } from 'langchain/llms/ai21.js'
-import { CohereInput } from 'langchain/llms/cohere.js'
-import { GooglePaLMTextInput } from 'langchain/llms/googlepalm.js'
+import AI21LLM from './ai21.llm'
+import CohereLLM from './cohere.llm'
+import OllamaLLM from './ollama.llm'
+import PalmLLM from './palm.llm'
+import { AI21Input } from 'langchain/llms/ai21'
+import { CohereInput } from 'langchain/llms/cohere'
+import { GooglePaLMTextInput } from 'langchain/llms/googlepalm'
 import { OllamaInput } from 'langchain/dist/util/ollama'
-import PalmChat from './palm.chat.js'
-import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm.js'
-import { EModel, IModel } from './interfaces.js'
+import PalmChat from './palm.chat'
+import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm'
+import { EModel, IModel } from '../../interfaces/models'
 
 export class ModelFactory {
-  static getInstance({ type, params }: IModel) {
+  static getInstance({
+    type,
+    params
+  }: IModel): AI21LLM | CohereLLM | OllamaLLM | PalmLLM | PalmChat {
     switch (type) {
       case EModel.AI21:
         return AI21LLM.getInstance(params as unknown as AI21Input)
