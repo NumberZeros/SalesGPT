@@ -15,13 +15,13 @@ export default class PalmChat extends ChatGooglePaLM {
 
   static getInstance(params?: GooglePaLMChatInput): PalmChat {
     if (!PalmChat.instance) {
-      const client = new Redis(
-        CONFIGURATION.SERVER_SIDE.THIRD_PARTY_CONFIG.REDIS_CONFIG.URL
-      )
-      const cache = new RedisCache(client)
+      // const client = new Redis(
+      //   CONFIGURATION.SERVER_SIDE.THIRD_PARTY_CONFIG.REDIS_CONFIG.URL
+      // )
+      // const cache = new RedisCache(client)
       PalmChat.instance = new PalmChat({
         apiKey: CONFIGURATION.SERVER_SIDE.LLM.GOOGLE_PALM_CONFIG.apiKey,
-        cache,
+        // cache,
         temperature: 0.8,
         ...params
       })
