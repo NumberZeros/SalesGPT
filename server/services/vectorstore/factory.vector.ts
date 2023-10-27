@@ -1,9 +1,11 @@
+import { Embeddings } from 'langchain/dist/embeddings/base.js'
+
+import { EVectorStore } from '@/server/interfaces/models.js'
+
+import ElasticSearchVectorStoreService from './elasticsearch.vector.js'
 import PineconeVectorStoreService from './pinecone.vector.js'
 import RedisVectorStoreServices from './redis.vector.js'
 import SupabaseVectorStoreServices from './supabase.vector.js'
-import ElasticSearchVectorStoreService from './elasticsearch.vector.js'
-import { EVectorStore } from '@/server/interfaces/models.js'
-import { Embeddings } from 'langchain/dist/embeddings/base.js'
 
 export class VectorFactory {
   static createVector(params: {

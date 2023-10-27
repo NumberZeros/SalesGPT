@@ -3,8 +3,8 @@
 import * as React from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
-import { cn } from '@/lib/utils'
 import { IconClose } from '@/components/ui/icons'
+import { cn } from '@/lib/utils'
 
 const Dialog = DialogPrimitive.Root
 
@@ -119,10 +119,9 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName
 
 export {
   Dialog,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
+  DialogDescription,
   DialogFooter,
+  DialogHeader,
   DialogTitle,
-  DialogDescription
-}
+  DialogTrigger}

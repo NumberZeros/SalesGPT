@@ -1,21 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Message as VercelChatMessage, StreamingTextResponse } from 'ai'
-
 import { createClient } from '@supabase/supabase-js'
-
+import { Message as VercelChatMessage, StreamingTextResponse } from 'ai'
 import { ChatOpenAI } from 'langchain/chat_models/openai'
-import { PromptTemplate } from 'langchain/prompts'
-import { SupabaseVectorStore } from 'langchain/vectorstores/supabase'
 import { Document } from 'langchain/document'
-import {
-  RunnableSequence,
-  RunnablePassthrough
-} from 'langchain/schema/runnable'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+import { PromptTemplate } from 'langchain/prompts'
 import {
   BytesOutputParser,
   StringOutputParser
 } from 'langchain/schema/output_parser'
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+import {
+  RunnablePassthrough,
+  RunnableSequence} from 'langchain/schema/runnable'
+import { SupabaseVectorStore } from 'langchain/vectorstores/supabase'
+import { NextRequest, NextResponse } from 'next/server'
 
 export const runtime = 'edge'
 

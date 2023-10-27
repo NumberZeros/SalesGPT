@@ -1,6 +1,7 @@
-import { PineconeLibArgs, PineconeStore } from 'langchain/vectorstores/pinecone'
 import { Pinecone } from '@pinecone-database/pinecone'
 import { Embeddings } from 'langchain/dist/embeddings/base'
+import { PineconeLibArgs, PineconeStore } from 'langchain/vectorstores/pinecone'
+
 import { CONFIGURATION } from '@/configuration'
 
 export default class PineconeVectorStoreService extends PineconeStore {

@@ -1,10 +1,11 @@
-import { RedisCache } from 'langchain/cache/ioredis'
 import Redis from 'ioredis'
-import { CONFIGURATION } from '@/configuration'
+import { RedisCache } from 'langchain/cache/ioredis'
 import {
   ChatGooglePaLM,
   GooglePaLMChatInput
 } from 'langchain/chat_models/googlepalm'
+
+import { CONFIGURATION } from '@/configuration'
 
 export default class PalmChat extends ChatGooglePaLM {
   private static instance: PalmChat

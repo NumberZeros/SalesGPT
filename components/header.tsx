@@ -1,23 +1,23 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { cn } from '@/lib/utils'
-import { auth } from '@/auth'
 import { clearChats } from '@/app/actions'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { auth } from '@/auth'
+import { ClearHistory } from '@/components/clear-history'
+import { LoginButton } from '@/components/login-button'
 import { Sidebar } from '@/components/sidebar'
+import { SidebarFooter } from '@/components/sidebar-footer'
 import { SidebarList } from '@/components/sidebar-list'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { Button, buttonVariants } from '@/components/ui/button'
 import {
   IconGitHub,
   IconNextChat,
   IconSeparator,
   IconVercel
 } from '@/components/ui/icons'
-import { SidebarFooter } from '@/components/sidebar-footer'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { ClearHistory } from '@/components/clear-history'
 import { UserMenu } from '@/components/user-menu'
-import { LoginButton } from '@/components/login-button'
+import { cn } from '@/lib/utils'
 
 export async function Header() {
   const session = await auth()

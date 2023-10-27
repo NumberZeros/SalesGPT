@@ -1,5 +1,6 @@
-import { CONFIGURATION } from '@/configuration'
 import { AI21, AI21Input } from 'langchain/llms/ai21'
+
+import { CONFIGURATION } from '@/configuration'
 
 export default class AI21LLM extends AI21 {
   private static instance: AI21LLM

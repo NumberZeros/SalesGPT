@@ -1,8 +1,8 @@
 import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm'
+import { OllamaInput } from 'langchain/dist/util/ollama'
 import { AI21Input } from 'langchain/llms/ai21'
 import { CohereInput } from 'langchain/llms/cohere'
 import { GooglePaLMTextInput } from 'langchain/llms/googlepalm'
-import { OllamaInput } from 'langchain/dist/util/ollama'
 
 export enum EModel {
   AI21 = 'AI21',

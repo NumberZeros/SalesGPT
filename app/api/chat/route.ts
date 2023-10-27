@@ -1,12 +1,10 @@
 import { kv } from '@vercel/kv'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
+// export const runtime = 'edge'
+import { NextRequest, NextResponse } from 'next/server'
 
 import { auth } from '@/auth'
 import { nanoid } from '@/lib/utils'
-
-// export const runtime = 'edge'
-
-import { NextRequest, NextResponse } from 'next/server'
 import { SimpleQAChat } from '@/server/services/agents/simple-qa/simple-qa-chat'
 const simpleQAChat = new SimpleQAChat()
 

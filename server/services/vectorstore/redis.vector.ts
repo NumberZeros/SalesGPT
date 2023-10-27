@@ -1,11 +1,11 @@
-import { CONFIGURATION } from '@/configuration'
 import { Embeddings } from 'langchain/dist/embeddings/base'
 import {
   RedisVectorStore,
   RedisVectorStoreConfig
 } from 'langchain/vectorstores/redis'
-
 import { createClient } from 'redis'
+
+import { CONFIGURATION } from '@/configuration'
 
 export default class RedisVectorStoreServices extends RedisVectorStore {
   constructor(embeddings: Embeddings, config: RedisVectorStoreConfig) {

@@ -1,14 +1,16 @@
-import AI21LLM from './ai21.llm'
-import CohereLLM from './cohere.llm'
-import OllamaLLM from './ollama.llm'
-import PalmLLM from './palm.llm'
+import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm'
+import { OllamaInput } from 'langchain/dist/util/ollama'
 import { AI21Input } from 'langchain/llms/ai21'
 import { CohereInput } from 'langchain/llms/cohere'
 import { GooglePaLMTextInput } from 'langchain/llms/googlepalm'
-import { OllamaInput } from 'langchain/dist/util/ollama'
-import PalmChat from './palm.chat'
-import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm'
+
 import { EModel, IModel } from '../../interfaces/models'
+
+import AI21LLM from './ai21.llm'
+import CohereLLM from './cohere.llm'
+import OllamaLLM from './ollama.llm'
+import PalmChat from './palm.chat'
+import PalmLLM from './palm.llm'
 
 export class ModelFactory {
   static getInstance({
