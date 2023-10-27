@@ -22,6 +22,7 @@ export const CONFIGURATION = {
     },
     THIRD_PARTY_CONFIG: {
       REDIS_CONFIG: {
+        index: process.env.REDIS_INDEX || 'documents',
         URL: process.env.REDIS_URL || ''
       },
       PINECONES_CONFIG: {
