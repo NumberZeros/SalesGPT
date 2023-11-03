@@ -11,13 +11,8 @@ export default class CohereLLM extends Cohere {
     super(params)
   }
 
-  static getInstance(params?: CohereInput): CohereLLM {
+  static getInstance(params?: CohereInput, cache?: RedisCache): CohereLLM {
     if (!CohereLLM.instance) {
-      const client = new Redis(
-        CONFIGURATION.SERVER_SIDE.THIRD_PARTY_CONFIG.REDIS_CONFIG.URL
-      )
-      const cache = new RedisCache(client)
-
       CohereLLM.instance = new CohereLLM({
         apiKey: CONFIGURATION.SERVER_SIDE.LLM.COHERE_CONFIG.apiKey,
         cache,
