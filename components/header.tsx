@@ -19,6 +19,8 @@ import {
 import { UserMenu } from '@/components/user-menu'
 import { cn } from '@/lib/utils'
 
+import { AdvanceSheet } from './siderbar-advance'
+
 export async function Header() {
   const session = await auth()
   return (
@@ -52,6 +54,10 @@ export async function Header() {
           )}
         </div>
       </div>
+      <div className='flex items-end justify-end space-x-2'>
+        <AdvanceSheet />
+      </div>
+
       {/* <div className="flex items-center justify-end space-x-2">
         <a
           target="_blank"
