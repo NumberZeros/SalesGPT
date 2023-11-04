@@ -33,9 +33,10 @@ export const {
           credentials.password === 'admin'
         ) {
           return {
-            id: new Date().getTime(),
-            name: 'admin',
-            email: credentials.email
+            user: {
+              name: 'admin',
+              email: credentials.email
+            }
           }
         }
         return null

@@ -3,7 +3,8 @@ import { notFound, redirect } from 'next/navigation'
 
 import { getChat } from '@/app/actions'
 import { auth } from '@/auth'
-import { Chat } from '@/components/chat'
+
+import { Chat } from './chat'
 
 // export const runtime = 'edge'
 // export const preferredRegion = 'home'
@@ -30,11 +31,11 @@ export async function generateMetadata({
 }
 
 export default async function ChatPage({ params }: ChatPageProps) {
-  // const session = await auth()
+  const session = await auth()
 
-  // if (!session?.user) {
-  //   redirect(`/sign-in?next=/chat/${params.id}`)
-  // }
+  if (!session?.user) {
+    redirect(`/sign-in?next=/chat/${params.id}`)
+  }
 
   // const chat = await getChat(params.id, session.user.id)
 
@@ -46,11 +47,5 @@ export default async function ChatPage({ params }: ChatPageProps) {
   //   notFound()
   // }
 
-  return (
-    <Chat
-      id="1234"
-      api="/api/chat/retrieval"
-      // id={chat.id} initialMessages={chat.messages}
-    />
-  )
+  return <Chat id="1234" api="/api/chat/retrieval" />
 }
