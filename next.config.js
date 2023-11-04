@@ -2,7 +2,8 @@
 module.exports = {
   reactStrictMode: true,
   experimental: {
-    serverActions: true
+    serverActions: true,
+    esmExternals: true
   },
   typescript: {
     ignoreBuildErrors: true
