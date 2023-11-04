@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 import {
   Sheet,
@@ -13,90 +13,162 @@ import {
   SheetTrigger
 } from '@/components/customize/sheet'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Textarea } from '@/components/ui/textarea'
 
 export function AdvanceSheet() {
-  const [temper, setTemper] = useState<number>(30)
-  const [size, setSize] = useState<number>(100)
-  const [overlap, setOverlap] = useState<number>(100)
+  const [cookies, setCookie] = useCookies([
+    'temperature',
+    'size',
+    'overlap',
+    'open-api-key',
+    'context'
+  ])
+
+  function handleSetCookie(
+    key: 'temperature' | 'size' | 'overlap' | 'open-api-key' | 'context',
+    value: any
+  ) {
+    setCookie(key, value, {
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24) // expires in 1 day
+    })
+  }
+  function handleReset() {
+    const expires = new Date(Date.now() + 1000 * 60 * 60 * 24)
+    setCookie('temperature', 80, {
+      expires
+    })
+    setCookie('size', 100, {
+      expires
+    })
+    setCookie('overlap', 100, {
+      expires
+    })
+    setCookie('open-api-key', '', {
+      expires
+    })
+    setCookie('context', '', {
+      expires
+    })
+  }
   return (
-    <div className="grid grid-cols-2 gap-2">
-      <Sheet key="top">
-        <SheetTrigger asChild>
-          <Button variant="outline">Tùy chỉnh</Button>
-        </SheetTrigger>
-        <SheetContent side="top">
-          <SheetHeader>
-            <SheetTitle>Tùy chỉnh nâng cao</SheetTitle>
-            <SheetDescription>
-              Tùy chỉnh nâng cao cho trợ lý ảo
-            </SheetDescription>
-          </SheetHeader>
-          <div className="w-full">
-            <div className="grid gap-4 py-4">
-              <div>
-                <Label>Độ chính xác</Label>
-                <Slider
-                  defaultValue={[30]}
-                  max={100}
-                  step={1}
-                  className="w-full"
-                  onValueChange={(e: Array<number>) => setTemper(e[0] || 0)}
-                />
-              </div>
-              <div>
-                <Label>Kích thước đoạn</Label>
-                <Slider
-                  defaultValue={[100]}
-                  max={3000}
-                  step={1}
-                  className="w-full"
-                  onValueChange={(e: Array<number>) => setSize(e[0] || 0)}
-                />
-              </div>
-              <div>
-                <Label>Chồng chất đoạn</Label>
-                <Slider
-                  defaultValue={[50]}
-                  max={600}
-                  step={1}
-                  className="w-full"
-                  onValueChange={(e: Array<number>) => setOverlap(e[0] || 0)}
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Tùy chỉnh</Button>
+      </SheetTrigger>
+      <SheetContent side="top">
+        <SheetHeader>
+          <SheetTitle>Tùy chỉnh nâng cao</SheetTitle>
+          <SheetDescription>Tùy chỉnh nâng cao cho trợ lý ảo</SheetDescription>
+        </SheetHeader>
+        <div className="grid w-full gap-4 py-4 sm:grid-cols-1 lg:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Thiết lập đầu vào</CardTitle>
+            </CardHeader>
+            <CardContent className="grid w-full gap-4 py-4">
+              <div className="grid w-full gap-1.5">
+                <Label htmlFor="open-api-key">Open API Key</Label>
+                <Input
+                  defaultValue={cookies?.['open-api-key']}
+                  id="open-api-key"
+                  type="text"
+                  onBlur={e => handleSetCookie('open-api-key', e.target.value)}
+                  placeholder="(Nếu có)"
                 />
               </div>
               <div className="grid w-full gap-1.5">
-                <Label htmlFor="message">Đầu vào</Label>
+                <Label htmlFor="context">Đầu vào</Label>
                 <Textarea
+                  defaultValue={cookies?.context || ''}
                   placeholder="Nhập dữ liệu đầu vào"
-                  id="message"
+                  id="context"
+                  onBlur={e => handleSetCookie('context', e.target.value)}
                   rows={10}
                 />
               </div>
-            </div>
-          </div>
-          {/* <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
-                <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Thiết lập đầu ra</CardTitle>
+            </CardHeader>
+            <CardContent className="grid w-full gap-4 py-4">
+              <div>
+                <Label>Độ chính xác</Label>
+                <div className="flex">
+                  <Slider
+                    defaultValue={[cookies?.temperature || 80]}
+                    max={100}
+                    step={1}
+                    className="w-[calc(90%)]"
+                    onValueChange={(e: Array<number>) =>
+                      handleSetCookie('temperature', e[0] || 0)
+                    }
+                  />
+                  <Input
+                    className="mx-1 w-[calc(15%)] text-end"
+                    value={`${cookies?.temperature}%`}
+                    type="text"
+                    disabled
+                  />
+                </div>
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="username" className="text-right">
-                  Username
-                </Label>
-                <Input id="username" value="@peduarte" className="col-span-3" />
+              <div>
+                <Label>Kích thước đoạn</Label>
+                <div className="flex">
+                  <Slider
+                    defaultValue={[cookies?.size || 100]}
+                    max={3000}
+                    step={1}
+                    className="w-[calc(90%)]"
+                    onValueChange={(e: Array<number>) =>
+                      handleSetCookie('size', e[0] || 0)
+                    }
+                  />
+                  <Input
+                    className="mx-1 w-[calc(15%)] text-end"
+                    value={`${cookies?.size}/3000`}
+                    type="text"
+                    disabled
+                  />
+                </div>
               </div>
-            </div> */}
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Cập nhât</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
-    </div>
+              <Label>Chồng chất đoạn</Label>
+              <div className="flex">
+                <Slider
+                  defaultValue={[cookies?.overlap || 100]}
+                  max={600}
+                  step={1}
+                  className="w-[calc(90%)]"
+                  onValueChange={(e: Array<number>) =>
+                    handleSetCookie('overlap', e[0] || 0)
+                  }
+                />
+                <Input
+                  className="mx-1 w-[calc(15%)] text-end"
+                  value={`${cookies?.overlap}/600`}
+                  type="text"
+                  disabled
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        <SheetFooter>
+          <SheetClose>
+            <Button variant="destructive" onClick={handleReset}>
+              Mặc định
+            </Button>
+          </SheetClose>
+          <SheetClose>
+            <Button>Lưu</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   )
 }
