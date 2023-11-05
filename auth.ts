@@ -30,7 +30,7 @@ export const {
       async authorize(credentials: any, req: any): Promise<any> {
         if (
           credentials.email === 'admin@gmail.com' &&
-          credentials.password === 'admin'
+          credentials.password === '@Admin00000'
         ) {
           return {
             user: {

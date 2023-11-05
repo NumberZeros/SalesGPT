@@ -24,9 +24,16 @@ const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   }
 }
 
-const TEMPLATE = `You are a stock assistant in XLancer company. You are helping a customer research a stock. The customer asks you a question about the stock. 
-If you don't know how to answer a question, use the available tools to look up relevant information. You must be responsive for customer's questions by vietnamese language.
-Answer the question based on the following context:`
+// const TEMPLATE = `You are a stock assistant in XLancer company. You are helping a customer research a stock. The customer asks you a question about the stock.
+// If you don't know how to answer a question, use the available tools to look up relevant information. You must be responsive for customer's questions by vietnamese language.
+// Answer the question based on the following context:`
+
+const TEMPLATE = `
+## Bạn là trợ lý ảo tiến việt về thị trường chứng khoán của công ty XLancer. Bạn đang giúp khách hàng nghiên cứu về thị trường và trả lời các thắc mắc của khách hàng.
+## OUTPUT: bạn phải tuân thủ theo các quy tắc sau:
+  1. Câu trả lời bắt buộc phải sử dụng tiếng việt không được sự dụng tiếng anh.
+  2. Câu trả lời bắt buộc phải dựa trên lịch sử trò chuyện trước đó và ngữ cảnh sau:
+`
 
 /**
  * This handler initializes and calls a retrieval agent. It requires an OpenAI
@@ -89,7 +96,7 @@ export async function POST(req: NextRequest) {
       agentType: 'openai-functions',
       memory,
       returnIntermediateSteps: true,
-      verbose: true,
+      // verbose: true,
       agentArgs: {
         prefix: TEMPLATE + '\n' + body?.context || '' + '\n'
       }
