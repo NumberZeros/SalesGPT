@@ -47,7 +47,5 @@ export default async function ChatPage({ params }: ChatPageProps) {
   //   notFound()
   // }
 
-  return (
-    <Chat id="1234" api="https://ai-api.tho-nguyen-soft.workers.dev/api/chat" />
-  )
+  return <Chat id="1234" api="/api/chat/retrieval-agents" />
 }
