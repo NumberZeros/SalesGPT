@@ -46,6 +46,8 @@ export default async function ChatPage({ params }: ChatPageProps) {
   // if (chat?.userId !== session?.user?.id) {
   //   notFound()
   // }
-
-  return <Chat id="1234" api="/api/chat/retrieval-agents" />
+  // return <Chat id="1234" api="/api/chat/retrieval-agents" />
+  return (
+    <Chat id="1234" api="https://ai-api-production.up.railway.app/api/chat" />
+  )
 }
