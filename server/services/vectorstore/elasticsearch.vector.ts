@@ -1,3 +1,5 @@
+import { CONFIGURATION } from '@/configuration'
+
 import { Client } from '@elastic/elasticsearch'
 import fs from 'fs'
 import { Embeddings } from 'langchain/dist/embeddings/base.js'
@@ -6,8 +8,6 @@ import {
   ElasticVectorSearch
 } from 'langchain/vectorstores/elasticsearch'
 import path from 'path'
-
-import { CONFIGURATION } from '@/configuration'
 
 export default class ElasticSearchVectorStoreService extends ElasticVectorSearch {
   constructor(embeddings: Embeddings, args: ElasticClientArgs) {

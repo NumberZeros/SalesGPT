@@ -1,11 +1,3 @@
-import Redis from 'ioredis'
-import { RedisCache } from 'langchain/cache/ioredis'
-import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm'
-import { OllamaInput } from 'langchain/dist/util/ollama'
-import { AI21Input } from 'langchain/llms/ai21'
-import { CohereInput } from 'langchain/llms/cohere'
-import { GooglePaLMTextInput } from 'langchain/llms/googlepalm'
-
 import { CONFIGURATION } from '@/configuration'
 
 import { EModel, IModel } from '../../interfaces/models'
@@ -15,6 +7,14 @@ import CohereLLM from './cohere.llm'
 import OllamaLLM from './ollama.llm'
 import PalmChat from './palm.chat'
 import PalmLLM from './palm.llm'
+
+import Redis from 'ioredis'
+import { RedisCache } from 'langchain/cache/ioredis'
+import { GooglePaLMChatInput } from 'langchain/chat_models/googlepalm'
+import { OllamaInput } from 'langchain/dist/util/ollama'
+import { AI21Input } from 'langchain/llms/ai21'
+import { CohereInput } from 'langchain/llms/cohere'
+import { GooglePaLMTextInput } from 'langchain/llms/googlepalm'
 
 export class ModelFactory {
   static getInstance({

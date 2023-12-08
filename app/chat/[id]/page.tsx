@@ -1,9 +1,9 @@
-import { type Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
-
 import { getChat } from '@/app/actions'
 import { auth } from '@/auth'
 import { Chat } from '@/components/chat'
+
+import { type Metadata } from 'next'
+import { notFound, redirect } from 'next/navigation'
 
 export const runtime = 'edge'
 export const preferredRegion = 'home'

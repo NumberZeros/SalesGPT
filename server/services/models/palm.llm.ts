@@ -1,8 +1,8 @@
+import { CONFIGURATION } from '@/configuration'
+
 import Redis from 'ioredis'
 import { RedisCache } from 'langchain/cache/ioredis'
 import { GooglePaLM, GooglePaLMTextInput } from 'langchain/llms/googlepalm'
-
-import { CONFIGURATION } from '@/configuration'
 
 export default class PalmLLM extends GooglePaLM {
   private static instance: PalmLLM

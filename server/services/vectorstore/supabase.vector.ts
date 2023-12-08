@@ -1,11 +1,11 @@
+import { CONFIGURATION } from '@/configuration'
+
 import { createClient } from '@supabase/supabase-js'
 import { Embeddings } from 'langchain/dist/embeddings/base'
 import {
   SupabaseLibArgs,
   SupabaseVectorStore
 } from 'langchain/vectorstores/supabase'
-
-import { CONFIGURATION } from '@/configuration'
 
 export default class SupabaseVectorStoreServices extends SupabaseVectorStore {
   private static instance: SupabaseVectorStoreServices

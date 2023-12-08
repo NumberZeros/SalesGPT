@@ -1,9 +1,9 @@
 'use client'
-import { useForm } from 'react-hook-form'
-import { signIn } from 'next-auth/react'
-
 import { Button } from './ui/button'
 import { Input } from './ui/input'
+
+import { signIn } from 'next-auth/react'
+import { useForm } from 'react-hook-form'
 
 export default function SignInForm() {
   const { register, handleSubmit } = useForm()

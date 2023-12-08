@@ -1,7 +1,5 @@
 'use client'
 
-import * as React from 'react'
-
 import { Button } from '@/components/ui/button'
 import { IconSidebar } from '@/components/ui/icons'
 import {
@@ -11,6 +9,8 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
+
+import * as React from 'react'
 
 export interface SidebarProps {
   children?: React.ReactNode

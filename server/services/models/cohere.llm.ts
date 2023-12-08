@@ -1,8 +1,8 @@
+import { CONFIGURATION } from '@/configuration'
+
 import Redis from 'ioredis'
 import { RedisCache } from 'langchain/cache/ioredis'
 import { Cohere, CohereInput } from 'langchain/llms/cohere'
-
-import { CONFIGURATION } from '@/configuration'
 
 export default class CohereLLM extends Cohere {
   private static instance: CohereLLM

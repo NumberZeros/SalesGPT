@@ -1,6 +1,3 @@
-import * as React from 'react'
-import Link from 'next/link'
-
 import { clearChats } from '@/app/actions'
 import { auth } from '@/auth'
 import { ClearHistory } from '@/components/clear-history'
@@ -20,6 +17,9 @@ import { UserMenu } from '@/components/user-menu'
 import { cn } from '@/lib/utils'
 
 import { AdvanceSheet } from './siderbar-advance'
+
+import Link from 'next/link'
+import * as React from 'react'
 
 export async function Header() {
   const session = await auth()

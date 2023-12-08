@@ -1,14 +1,14 @@
 'use client'
 
-import { useCookies } from 'react-cookie'
-import { toast } from 'react-hot-toast'
-import { type Message, useChat } from 'ai/react'
-
 import { ChatList } from '@/components/chat-list'
 import { ChatPanel } from '@/components/chat-panel'
 import { ChatScrollAnchor } from '@/components/chat-scroll-anchor'
 import { EmptyScreen } from '@/components/empty-screen'
 import { cn } from '@/lib/utils'
+
+import { type Message, useChat } from 'ai/react'
+import { useCookies } from 'react-cookie'
+import { toast } from 'react-hot-toast'
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[]

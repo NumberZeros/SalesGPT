@@ -1,9 +1,5 @@
 'use client'
 
-import * as React from 'react'
-import { toast } from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,6 +14,10 @@ import {
 import { Button } from '@/components/ui/button'
 import { IconSpinner } from '@/components/ui/icons'
 import { ServerActionResult } from '@/lib/types'
+
+import { useRouter } from 'next/navigation'
+import * as React from 'react'
+import { toast } from 'react-hot-toast'
 
 interface ClearHistoryProps {
   clearChats: () => ServerActionResult<void>

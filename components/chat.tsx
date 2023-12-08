@@ -1,9 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { toast } from 'react-hot-toast'
-import { type Message,useChat } from 'ai/react'
-
 import { ChatList } from '@/components/chat-list'
 import { ChatPanel } from '@/components/chat-panel'
 import { ChatScrollAnchor } from '@/components/chat-scroll-anchor'
@@ -21,6 +17,10 @@ import { cn } from '@/lib/utils'
 
 import { Button } from './ui/button'
 import { Input } from './ui/input'
+
+import { type Message,useChat } from 'ai/react'
+import { useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {

@@ -1,13 +1,13 @@
-import { Runnable } from 'langchain/dist/schema/runnable'
-import { PromptTemplate } from 'langchain/prompts'
-import { BytesOutputParser } from 'langchain/schema/output_parser'
-
 import { EModel } from '@/server/interfaces/models'
 
 import { ModelFactory } from '../../models/factory.model'
 import PalmChat from '../../models/palm.chat'
 
 import { TEMPLATE } from './prompt'
+
+import { Runnable } from 'langchain/dist/schema/runnable'
+import { PromptTemplate } from 'langchain/prompts'
+import { BytesOutputParser } from 'langchain/schema/output_parser'
 
 export class SimpleQAChat {
   private model: PalmChat

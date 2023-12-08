@@ -1,6 +1,3 @@
-import { Toaster } from 'react-hot-toast'
-import { Metadata } from 'next'
-
 import { Header } from '@/components/header'
 import { Providers } from '@/components/providers'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
@@ -8,6 +5,9 @@ import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 
 import '@/app/globals.css'
+
+import { Metadata } from 'next'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
   title: {

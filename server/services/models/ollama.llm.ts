@@ -1,7 +1,7 @@
+import { CONFIGURATION } from '@/configuration'
+
 import { OllamaInput } from 'langchain/dist/util/ollama'
 import { Ollama } from 'langchain/llms/ollama'
-
-import { CONFIGURATION } from '@/configuration'
 
 export default class OllamaLLM extends Ollama {
   private static instance: OllamaLLM
