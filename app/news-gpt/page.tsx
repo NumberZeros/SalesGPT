@@ -1,10 +1,10 @@
-import { type Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
-
 import { getChat } from '@/app/actions'
 import { auth } from '@/auth'
 
 import { Chat } from './chat'
+
+import { type Metadata } from 'next'
+import { redirect } from 'next/navigation'
 
 // export const runtime = 'edge'
 // export const preferredRegion = 'home'
@@ -48,6 +48,9 @@ export default async function ChatPage({ params }: ChatPageProps) {
   // }
   // return <Chat id="1234" api="/api/chat/retrieval-agents" />
   return (
-    <Chat id="1234" api="https://ai-api-production.up.railway.app/api/chat" />
+    <Chat
+      id="1234"
+      api="https://ai-api-production.up.railway.app/apis/ai/cafe-f/chat"
+    />
   )
 }
