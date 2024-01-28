@@ -39,5 +39,5 @@ export default async function ChatPage({ params }: ChatPageProps) {
     redirect(`/sign-in?next=/chat/${params.id}`)
   }
 
-  return <Chat id="1234" api={BASE_URL} />
+  return <Chat id="1234" api={`${BASE_URL}/alpha`} />
 }
